@@ -25,8 +25,6 @@ import org.springframework.boot.autoconfigure.mongo.MongoProperties;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 
-import com.github.benmanes.caffeine.cache.Caffeine;
-
 import de.flapdoodle.embed.mongo.config.IMongodConfig;
 import de.flapdoodle.embed.mongo.config.MongodConfigBuilder;
 import de.flapdoodle.embed.mongo.config.Net;
@@ -51,10 +49,5 @@ public class PropertyCrossApplication {
 		return new MongodConfigBuilder().version(Version.Main.PRODUCTION)
 				.replication(new Storage(databaseDir, null, 0))
 				.net(new Net(properties.getPort(), Network.localhostIsIPv6())).build();
-	}
-
-	@Bean
-	public Caffeine<Object, Object> caffeine() {
-		return Caffeine.from("maximumSize=500,expireAfterWrite=10s");
 	}
 }
