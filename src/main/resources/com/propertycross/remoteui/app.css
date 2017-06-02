@@ -1,0 +1,19 @@
+.actionBarTitle {
+	fontSize: 20;
+	marginLeft: 8dp;
+	textColor: white;
+	fontFamily: sans-serif-medium;
+	verticalAlign: center;
+}
+
+.actionIcon {
+	width: 48dp;
+	height: 48dp;
+	padding: 14dp;
+	backgroundColor: transparent;
+	verticalAlign: center;
+}
+
+TextView {
+	textColor: black;
+}

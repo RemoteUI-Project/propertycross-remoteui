@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RemoteUILayout xmlns="urn:remoteui:org:layout">
+	<style href="app.css" />
+	<LinearLayout orientation="vertical" width="fill_parent"
+		backgroundColor="white" height="fill_parent">
+		<ToolBar backgroundColor="#222" width="fill_parent">
+			<LinearLayout onClick="#{finish()}" height="fill_parent">
+				<ImageView class="actionIcon" href="img/left.svg" />
+				<ImageView verticalAlign="center" href="img/icon-base-173x173.png"
+					width="32dp" height="32dp" />
+				<TextView class="actionBarTitle" text="#{title}" />
+			</LinearLayout>
+		</ToolBar>
+		<TextView text="You have not added any properties to your favourites."
+			visible="#{warnVisible}" padding="16dp" />
+		<ScrollView width="fill_parent" height="fill_parent">
+			<LinearLayout width="fill_parent" orientation="vertical">
+				<ListView width="fill_parent" height="fill_parent"
+					scrollable="false" items="#{items}" onItemClicked="#{onItemClicked(item)}">
+					<Template>
+						<FrameLayout height="64dp" width="fill_parent">
+							<ImageView width="64dp" height="64dp" marginRight="4dp"
+								href="#{item.?thumbUrl}" scaleType="centerCrop" />
+							<TextView text="#{item.?priceFormatted}" marginLeft="68dp"
+								fontSize="20" fontWeight="bold" marginTop="4dp" />
+							<TextView marginLeft="68dp" fontSize="18" textColor="gray"
+								verticalAlign="bottom" ellipsize="end" text="#{item.?title}"
+								lines="1" marginBottom="8dp" />
+							<View backgroundColor="lightgray" width="fill_parent"
+								height="1dp" verticalAlign="bottom" />
+						</FrameLayout>
+					</Template>
+				</ListView>
+				<TextView horizontalAlign="center" margin="8dp" textColor="gray"
+					text="#{resultInfoText}" visible="#{loadMoreVisible}" />
+				<View backgroundColor="lightgray" width="fill_parent" height="1dp"
+					verticalAlign="bottom" />
+				<Button width="fill_parent" text="#{loadingButtonText}"
+					onClick="#{onLoadMoreClicked()}" visible="#{loadMoreVisible}"
+					fontFamily="sans-serif-medium" backgroundColor="transparent"
+					marginBottom="8dp" />
+			</LinearLayout>
+		</ScrollView>
+	</LinearLayout>
+</RemoteUILayout>

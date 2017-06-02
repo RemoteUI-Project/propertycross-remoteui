@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RemoteUILayout xmlns="urn:remoteui:org:layout">
+	<style href="app.css" />
+	<LinearLayout orientation="vertical" width="fill_parent"
+		height="fill_parent" backgroundColor="white">
+		<ToolBar backgroundColor="#222" width="fill_parent">
+			<LinearLayout onClick="#{finish()}" height="fill_parent">
+				<ImageView class="actionIcon" href="img/left.svg" />
+				<ImageView verticalAlign="center" href="img/icon-base-173x173.png"
+					width="32dp" height="32dp" />
+				<TextView class="actionBarTitle" text="Property Details" />
+			</LinearLayout>
+			<CheckBox checked="#{favorite}" horizontalAlign="right"
+				image="img/favorite.states.xml" marginRight="16dp" width="30dp"
+				height="30dp" />
+		</ToolBar>
+		<ScrollView width="fill_parent" height="fill_parent">
+			<LinearLayout backgroundColor="white" orientation="vertical"
+				width="fill_parent" height="fill_parent">
+				<LinearLayout marginTop="8dp" marginLeft="16dp" width="fill_parent"
+					marginRight="16dp" marginBottom="8dp">
+					<TextView text="#{prop.priceFormatted}" fontSize="25"
+						fontWeight="bold" width="0dp" layoutWeight="1" />
+				</LinearLayout>
+				<TextView marginLeft="16dp" marginRight="16dp" fontSize="24"
+					text="#{prop.title}" lines="1" />
+				<ImageView height="@{client.viewportWidthDp/3*2}dp" width="@{client.viewportWidthDp-8}dp"
+					margin="4dp" href="#{prop.imgUrl}" />
+				<LinearLayout width="fill_parent" height="fill_parent"
+					orientation="vertical" marginLeft="16dp" marginRight="16dp">
+					<TextView fontSize="18"
+						text="#{prop.?bedroomNumber  +' bed, ' + prop.?bathroomNumber + ' bathroom ' + prop.?propertyType}" />
+					<TextView marginTop="8dp" fontSize="18" text="#{prop.summary}" />
+					<Button marginTop="8dp" text="Open in Browser" onClick="#{openUri(prop.listerUrl)}"
+						width="fill_parent" />
+				</LinearLayout>
+			</LinearLayout>
+		</ScrollView>
+	</LinearLayout>
+</RemoteUILayout>

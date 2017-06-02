@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RemoteUILayout xmlns="urn:remoteui:org:layout">
+	<style href="app.css" />
+	<LinearLayout orientation="vertical" width="fill_parent"
+		height="fill_parent" backgroundColor="white">
+		<ToolBar backgroundColor="#222" width="fill_parent">
+			<ImageView href="img/icon-base-173x173.png" width="32dp"
+				marginLeft="16dp" height="32dp" />
+			<TextView class="actionBarTitle" text="PropertyCross" />
+			<Button text="Favourites" horizontalAlign="right" marginRight="16dp"
+				textColor="white" backgroundColor="transparent" onClick="#{onOpenFavouritesClicked()}" />
+			<ProgressBar indeterminateTint="white" horizontalAlign="right"
+				height="32dp" width="40dp" visible="#{searching}" />
+		</ToolBar>
+		<ScrollView width="fill_parent" height="fill_parent">
+			<LinearLayout orientation="vertical" padding="16dp"
+				width="fill_parent">
+				<TextView
+					text="Use the form below to search for houses to buy. You can search 
+			by place-name, postcode, or click 'My location', to search in your current location!"
+					marginBottom="4dp" />
+				<EditTextView width="fill_parent" marginBottom="4dp"
+					lines="1" hint="Search Term" text="#{searchTerm}" />
+				<Button marginBottom="4dp" text="Go" width="fill_parent"
+					onClick="#{onSearchByTermClicked()}" enabled="#{!searchTerm.isEmpty()}" />
+				<Button marginBottom="4dp" text="My Location" width="fill_parent"
+					onClick="#{onSearchByLocationClicked()}" enabled="#{location!=null}" />
+				<TextView width="fill_parent" text="An error occured while searching:"
+					margin="4dp" marginTop="8dp" visible="#{error}" />
+				<TextView width="fill_parent" text="#{errorText}" margin="4dp"
+					fontWeight="bold" visible="#{error}" />
+				<TextView width="fill_parent" text="RECENT SEARCHES"
+					margin="4dp" fontWeight="bold" marginTop="20dp" />
+				<View width="fill_parent" height="2dp" backgroundColor="lightgray" />
+				<ListView width="fill_parent" marginBottom="4dp"
+					items="#{recentSearches}" onItemClicked="#{search(item.term)}">
+					<Template>
+						<FrameLayout height="48dp" width="fill_parent">
+							<TextView text="#{item.term}" verticalAlign="center"
+								lines="1" ellipsize="end" textColor="darkgray" marginLeft="8dp"
+								marginRight="50dp" />
+							<TextView text="#{'('+item.resultCount+')'}" textColor="darkgray"
+								verticalAlign="center" horizontalAlign="right" marginRight="8dp" />
+							<View backgroundColor="lightgray" width="fill_parent"
+								height="1dp" verticalAlign="bottom" />
+						</FrameLayout>
+					</Template>
+				</ListView>
+			</LinearLayout>
+		</ScrollView>
+	</LinearLayout>
+</RemoteUILayout>

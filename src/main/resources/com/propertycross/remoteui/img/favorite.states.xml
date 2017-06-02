@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statefulImage xmlns="urn:remoteui:org:statefulimage">
+	<image state="checked" href="star.svg#checked" />
+	<image state="enabled" href="star.svg#enabled" />
+</statefulImage>
